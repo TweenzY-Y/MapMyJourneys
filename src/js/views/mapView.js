@@ -31,18 +31,10 @@ class mapView {
   }
 
   renderBaseMap() {
-    this.map = L.map("map").setView([51.505, -0.09], 3);
-
-    /*     L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
-      {
-        maxZoom: 8,
-        minZoom: 3,
-        noWrap: true,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    ); */
+    this.map = L.map("map", {
+      minZoom: 3,
+      maxZoom: 8,
+    }).setView([51.505, -0.09], 3);
   }
 
   renderRegionLayers() {
@@ -58,15 +50,9 @@ class mapView {
       });
       layer.on({
         mouseover: function () {
-          if (!layer.isSelected) {
-            layer.setStyle({
-              fillColor: Settings.HOVER_COLOR,
-            });
-          } else {
-            layer.setStyle({
-              fillColor: Settings.HOVER_COLOR,
-            });
-          }
+          layer.setStyle({
+            fillColor: Settings.HOVER_COLOR,
+          });
           regionNameEl.textContent = layer.region;
           regionNameEl.classList.add("active");
         },
@@ -74,7 +60,6 @@ class mapView {
           if (!layer.isSelected) {
             layer.setStyle({
               fillColor: Settings.DEFAULT_COLOR,
-              fillOpacity: 1,
             });
           } else {
             layer.setStyle({
@@ -85,18 +70,8 @@ class mapView {
         },
         click: function () {
           if (!layer.isSelected) {
-            layer.setStyle({
-              fillColor: "#ffbea1",
-              fillOpacity: 0.5, // Set the fill opacity
-            });
             controlRegionAdd(layer.region);
-            layer.isSelected = true;
           } else {
-            layer.setStyle({
-              fillColor: "#ffbea1",
-              fillOpacity: 0.75, // Set the fill opacity
-            });
-            layer.isSelected = false;
             controlRegionRemove(layer.region);
           }
         },
