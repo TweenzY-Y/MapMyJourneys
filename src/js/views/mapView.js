@@ -32,9 +32,12 @@ class mapView {
 
   renderBaseMap() {
     this.map = L.map("map", {
-      minZoom: 3,
+      minZoom: 1,
       maxZoom: 8,
-    }).setView([51.505, -0.09], 3);
+    }).setView([51.505, -0.09], 1);
+
+    this.map.fitWorld();
+    this.map.setMaxBounds(this.map.getBounds());
   }
 
   renderRegionLayers() {
