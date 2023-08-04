@@ -31,9 +31,9 @@ main {
 
 /* HEADER STYLING */
 header {
-  width: min(95%, 400px);
+  margin: 0 auto;
+  width: 95%;
   padding-top: 20px;
-  margin-left: 2.5vh;
 }
 
 header input {
@@ -116,4 +116,10 @@ header .query-results li:hover {
 .regions-summary {
   padding: 20px;
   font-size: 18px;
+}
+
+@media (min-width: 420px) {
+  header input {
+    width: 400px;
+  }
 }
